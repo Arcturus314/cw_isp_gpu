@@ -17,5 +17,31 @@ Shared cache between cores?
 
 Basic routines: for 4k 30fps operation at 100MHz
     Needs to be able to process 250 million pixels per second
-    Assume 10 multiply-add instructions per pixel
-    
+    Assume 30 multiply-add instructions per pixel (10 instructions on each RGB value)
+    We need 7.5 billion instructions per second
+    We need to process 75 instructions per clock
+    Let's make that 100 instructions per clock for a nice safety margin (assumin perfect pipelining blah blah blah)
+
+With 4-wide SIMD units, we need 20 units to met our spec
+
+Memory model- the ideal situation would be a highly parallel memory capable of holding a scanline at each address. Being able to load in scanlines 1 by 1, and run processing on the individual scanline, would vastly increase performance
+    DDR3: 
+
+We want multi-port access to the shared scanline cache. But multiple ports will decrease clock speed
+
+Branch prediction: predict that the branch will always be taken. Given the number of whole-image for loops, this solution seems acceptable.
+
+Maybe one low-performance core for file synchronization
+
+Maybe one 16-state (4 bit) memory for each core (accessible through other cores) dedicated to scheduling flags?
+
+I DON'T KNOW HOW TO DESIGN CONTROL LOGIC FOR THIS!!!! LET'S INDIVIDUALLY PROGRAM EACH CORE INSTEAD
+
+For lots of sums- maybe instruction to sum all elements of vector? 
+
+Add-store, multiply-accumulate, multiply-accumulate-store
+
+General purpose processor maybe uses different branch predictor (expanded version of E85 pipelined)
+
+Accelerate 3x3 multiplication
+

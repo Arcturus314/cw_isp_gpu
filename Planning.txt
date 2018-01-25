@@ -15,4 +15,9 @@ Plan ISA and memory architecture
 
 Plan overall processor layout
 
+Do we want capability to write out to a file?
+What colorspace should the GPU be working in- efficient manipulation of tuples (RGB) or quadruples (CMYK) could be very useful
+    https://en.wikipedia.org/wiki/Color_space
+
+What bit depth do we want (assume 16 bit for future purposes)
     

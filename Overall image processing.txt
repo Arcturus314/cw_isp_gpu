@@ -1,4 +1,51 @@
 Overall Image Processing Operations:
 Taken from: http://homepages.inf.ed.ac.uk/rbf/BOOKS/PHILLIPS/cips2ed.pdf
 
+Image Basics:
+    An image can be represented as a 2D pixel array
+    Color / grey-shade displayed for a given pixel depends on the number stored in the array for that pixel
+        Potentially store values in R5 or R6 space:
+        [xpos, ypos, colorspaceA, colorspaceB, colorspaceC, (colorspaceD)]
+    TIFF files
+        First 8 bytes header
+            Same format on all TIFF files
+        Rest of file dependent on implementation
+            Image Data section- directly after header, defines data type, image width, image length, rows per strip, strip offsets etc
+    BMP files 
+        Simpler than TIFF
+        LSB
+        Structured with
+            1. file header
+            2. bitmap header
+            3. color table
+            Image stored bottom-to-top
 
+
+CH3: halftoning
+    Threshold value- when a propagated error reaches a certain value, turn a pixel on (and leave it on)
+    Involves the image matrix and two matrices of equal size to hold error data
+    Linear operations on all matrices
+    Two nested for loops to scan through entire image
+
+CH4: histograms and histogram equalization
+    Lots of sum operations to compute histogram
+    Many for loops- supports always-branch predictor
+    Accumulates inside each for loops
+    Applying results:
+        division and multiplication of each image matrix element
+
+CH5: edge detection
+    Multiplying 3x3 matrices together. Many times. For each pixel, one 3x3 matrix multiplication
+    Lots of subtraction and addition between pixels
+
+CH7: spatial frequency filtering
+    used to filter out recurrent noise in images
+    used for edge enhancement and smoothing
+    frequency-time domain conversion
+        matrix multiplication
+        convolutional masks- faster than ffts
+
+CH13: image geometry modification
+    Trig operators- maclaurin series, maybe fixed point operators?
+    Bilinear interpolation- no floating point, just arithmetic
+    
