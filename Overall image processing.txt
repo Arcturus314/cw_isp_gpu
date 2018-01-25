@@ -1,0 +1,4 @@
+Overall Image Processing Operations:
+Taken from: http://homepages.inf.ed.ac.uk/rbf/BOOKS/PHILLIPS/cips2ed.pdf
+
+

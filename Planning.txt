@@ -11,6 +11,7 @@ Plan ISA and memory architecture
         -http://meseec.ce.rit.edu/551-projects/spring2015/3-2.pdf
         -http://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/lectures/08_mem_hierarchy.pdf
         -https://courses.cs.washington.edu/courses/cse471/13sp/lectures/GPUsStudents.pdf
+    -Potential Research (data processing functions)
 
 Plan overall processor layout
 
