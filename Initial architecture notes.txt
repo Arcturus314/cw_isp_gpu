@@ -1,0 +1,21 @@
+Architecture Notes:
+
+16 bit operation (bit depth)
+
+SIMD units should be 5-wide, to represent quadruples in CMYK (perhaps only some units?)
+
+I should include explicit instructions for matrix multiplication and dot product calculation (how wide?- see image processing routines)
+
+Should the article contain general purpose instructions to save image files? Potentially a simpler core
+
+Shared cache between cores?
+    Working at 4k, 12 bits per color RGB provides 3 million bits = 50 MB per image- no way we can store an entire image in cache
+    Can we store an entire scanline in fast on-chip memory, plus ~1 kb for image statistics?
+        Scanline (4000px) takes 144000 bits = 20kb (THIS IS A LOT OF CACHE)
+            For perspective: 
+                Nehalem cache (at 45nm) was 64kb -> 256kb (l1 and l2)
+
+Basic routines: for 4k 30fps operation at 100MHz
+    Needs to be able to process 250 million pixels per second
+    Assume 10 multiply-add instructions per pixel
+    

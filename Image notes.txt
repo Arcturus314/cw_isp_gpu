@@ -1,0 +1,18 @@
+Color Spaces:
+https://en.wikipedia.org/wiki/Color_space
+https://en.wikipedia.org/wiki/RGBA_color_space
+
+RGB: 3-wide, additive color mixing
+    sRGB, AdobeRGB, ProPhoto RGB, CIE RGB
+
+RGBA: RGB with additional color channel for transparency
+    Used in PNG images
+
+CMYK: 4-wide, subtractive color mixing (printing purposes)
+
+YPbPr: form of analog color space, used in analog systems
+
+YCbCr: form of digital color space
+
+-CONCLUSION: We should keep SIMD units 4-wide st a single unit can manipulate an entire pixel
+
