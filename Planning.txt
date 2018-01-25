@@ -1,0 +1,17 @@
+Overall Planning:
+
+Analyze DCRaw Code, as representative image processing code
+    -Identify most common instructions (ISA)
+    -Identify looping structures (branch prediction)
+    -Identify potential parallelism
+    -Identify potential memory bottlenecks, potential cache setup
+
+Plan ISA and memory architecture
+    -Potential research (memory structure)
+        -http://meseec.ce.rit.edu/551-projects/spring2015/3-2.pdf
+        -http://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/lectures/08_mem_hierarchy.pdf
+        -https://courses.cs.washington.edu/courses/cse471/13sp/lectures/GPUsStudents.pdf
+
+Plan overall processor layout
+
+    
