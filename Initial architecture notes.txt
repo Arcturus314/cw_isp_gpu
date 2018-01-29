@@ -1,5 +1,5 @@
 Architecture Notes:
-
+https://www.nvidia.com/content/PDF/fermi_white_papers/NVIDIA_Fermi_Compute_Architecture_Whitepaper.pdf
 16 bit operation (bit depth)
 
 SIMD units should be 5-wide, to represent quadruples in CMYK (perhaps only some units?)
@@ -44,4 +44,3 @@ Add-store, multiply-accumulate, multiply-accumulate-store
 General purpose processor maybe uses different branch predictor (expanded version of E85 pipelined)
 
 Accelerate 3x3 multiplication
-

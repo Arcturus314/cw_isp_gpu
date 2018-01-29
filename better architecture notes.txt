@@ -1,0 +1,34 @@
+Better Architecture Notes
+
+
+ALU / EU description
+
+With the current system, assuming a 100MHz clock, and a 4k image at 30fps:
+    Need to process ~100 instructions per clock, assuming 10 instructions per subpixel
+    Computing resources will be assigned in a SIMD array
+        10 cores, 8-wide per core 
+        each core processes 2 pixels per clock, assuming 4 values per clock
+        this will (hopefully) provide an acceptable compromise between context space (needs to store context of 9 other cores)
+    One remaining core will interface with fixed-function image processing blocks
+
+Memory description
+    Each core will have access to a 8kB per-core memory for cache / data storage, word-addressible in 16 bit words. 4kb of this is dedicated as an instruction buffer
+
+    Each core will also have access to a shared 200kb cache, used to store a single scanline. This memory will be multi-ported (FIND FREQUENCY-PORT TRADEOFF), and have busy flags in case two writes are requested at the same address. Each core will wait until the busy flag is released before writing and proceeding to the next instructions
+
+    Registers of each core will be stored in a central location. All cores will have read access to all register sets, with write access muxed in. This allows for easy context switching. This allows for 10 separate contexts.
+
+    All available memory for each core will be memory mapped to a 32-bit address space.
+
+    Main system memory will be offboard DDR3. A memory controller will not be included in the design. Instruction fetching leads to many issues- you'll have 10 cores wanting to be fed instructions and data from the same source. You'll need a very good caching system for this, one which I'm not sure how to design.
+        Potential solutions are:
+        1) Map ~100MB of space from base of DDR3 to each core, sequentially, with these memory-mapped to per-core memory. Cores have no access to each others memory. The remaining space is shared data space
+        2) Use on-chip memory to store instructions for each core, with DDR3 used purely as data memory
+        3) Potential compromise- memory requests handled sequentially core-by-core. If one core doesn't have a data request, more instructions are loaded into its memory. This makes everything a fair bit easier, as 64 bits are loaded into memory at a time
+            Perhaps structure instruction memory as instruction for successive cores? So store instruction 1 core 1, instruction 1 core 2 ...
+
+ISA description:
+    In addition to the 'normal' ISA used in the class-design processor, there will be more general-purpose arithmetic instructions as well as dedicated 2-4 wide vector and matrix operations
+
+
+
